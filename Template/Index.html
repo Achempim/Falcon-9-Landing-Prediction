@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falcon 9 Landing Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        form { display: inline-block; text-align: left; }
+        input, select { padding: 10px; margin: 10px; width: 200px; }
+        button { padding: 10px 20px; background-color: #008CBA; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Falcon 9 Landing Prediction</h2>
+    <form action="/predict" method="post">
+        <label>Payload Mass (kg):</label>
+        <input type="number" name="payload_mass" min="0" max="10000" value="5000" required><br>
+
+        <label>Launch Site:</label>
+        <select name="launch_site">
+            <option value="CCAFS">CCAFS</option>
+            <option value="KSC">KSC</option>
+            <option value="VAFB">VAFB</option>
+        </select><br>
+
+        <label>Weather Condition:</label>
+        <select name="weather_condition">
+            <option value="Clear">Clear</option>
+            <option value="Cloudy">Cloudy</option>
+            <option value="Rainy">Rainy</option>
+            <option value="Windy">Windy</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_result %}
+    <h3>Prediction Result: {{ prediction_result }}</h3>
+    {% endif %}
+</body>
+</html>
